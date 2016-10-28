@@ -50,12 +50,15 @@ def are_co_prime(x, y):
     return euclid_itr(x, y) == 1
 
 
-def modular_multiplicative_inverse(a, b):
-    if not are_co_prime(a, b):
+def modular_multiplicative_inverse(a, mod):
+    if not are_co_prime(a, mod):
         return None
 
-    x, y, d = extended_euclid_itr(a, b)
+    if a > mod:
+        a %= mod
 
-    return y
+    x, y, d = extended_euclid_rec(a, mod)
+
+    return x % mod
 
 
