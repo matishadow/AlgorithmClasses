@@ -169,7 +169,8 @@ def merge(A, B):
 def merge_sort(array):
     n = len(array)
     if n > 1:
-        return merge(merge_sort(array[:math.floor(n/2)]), merge_sort(array[(math.floor(n/2)+1):]))
+        middle = math.floor(n/2)
+        return merge(merge_sort(array[:middle]), merge_sort(array[middle:]))
     else:
         return array
 
