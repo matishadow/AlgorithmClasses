@@ -25,9 +25,9 @@ def multiply(number1, number2):
     for i in range(n):
         r = [0] * (2 * n)
         for j in range(n):
-            r[len(r) - i - j - 1] = number1[n - j - 1]
+            r[len(r) - i - j - 1] = int(number1[n - j - 1])
 
-        if number2[n - i - 1] != 0:
+        if int(number2[n - i - 1]) != 0:
             result = add(result, r)
 
     return result
@@ -55,6 +55,24 @@ def divide(x, y):
     return q, r
 
 
+def divide_rec(x, y):
+    if x == 0:
+        return 0, 0
+
+    q, r = divide_rec(x // 2, y)
+
+    q *= 2
+    r *= 2
+
+    if (x % 2) != 0:
+        r += 1
+    if r >= y:
+        r -= y
+        q += 1
+
+    return q, r
+
+
 def mode_xp(x, y, N):
     f = 1
     z = x
@@ -69,3 +87,14 @@ def mode_xp(x, y, N):
         z = (z * z % N)
 
     return f
+
+
+def mode_xp_rec(x, y, N):
+    if y == 0:
+        return 1
+    z = mode_xp_rec(x, y // 2, N)
+
+    if (y % 2) == 0:
+        return (z * z) % N
+    else:
+        (x * z * z) % N
