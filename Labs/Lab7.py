@@ -1,4 +1,6 @@
 import queue
+import Labs.Lab1
+import math
 
 
 def counting_sort(A, result_array, k):
@@ -47,3 +49,17 @@ def radix_sort_words(array):
                 array_index += 1
 
 
+def bucket_sort(array, n):
+    buckets = []
+    for _ in range(n):
+        buckets.append([])
+
+    for i in range(0, len(array)):
+        buckets[math.floor(n*array[i])].append(array[i])
+
+    for bucket in buckets:
+        Labs.Lab1.insertion_sort(bucket)
+
+    for bucket in buckets:
+        for i in bucket:
+            print(i, end=', ')
