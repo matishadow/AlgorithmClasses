@@ -25,6 +25,22 @@ def counting_sort(A, result_array, k):
     return result_array
 
 
+def count_numbers_in_range(input_array, k, a, b):
+    count_array = [0] * k
+    aggregated_array = [0] * k
+
+    for i in input_array:
+        count_array[i - 1] += 1
+
+    aggregated_array[0] = count_array[0]
+    for i in range(1, k):
+        aggregated_array[i] = aggregated_array[i - 1] + count_array[i]
+
+    aggregated_array.insert(0, 0)
+
+    return aggregated_array[b ] - aggregated_array[a - 1]
+
+
 def radix_sort_words(array):
     d = len(str(array[0]))
     n = len(array)
@@ -42,7 +58,7 @@ def radix_sort_words(array):
 
         array_index = 0
         for j in range(1, 26 + 1):
-            q = queues[j-1]
+            q = queues[j - 1]
 
             while len(q.queue) > 0:
                 array[array_index] = q.get_nowait()
@@ -55,7 +71,7 @@ def bucket_sort(array, n):
         buckets.append([])
 
     for i in range(0, len(array)):
-        buckets[math.floor(n*array[i])].append(array[i])
+        buckets[math.floor(n * array[i])].append(array[i])
 
     for bucket in buckets:
         Labs.Lab1.insertion_sort(bucket)
