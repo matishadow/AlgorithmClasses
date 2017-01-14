@@ -29,7 +29,7 @@ def shortest_distance_hotels(distances):
                 penalties[i] = temp_penalty
                 path[i] = j
 
-    print_path(path, n)
+    print_path(path, n - 1)
     return path
 
 
